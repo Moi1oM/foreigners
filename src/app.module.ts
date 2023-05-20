@@ -12,6 +12,7 @@ import { UsersModule } from './modules/models/users/users.module';
 import { RoomsModule } from './modules/models/rooms/rooms.module';
 import { MessagesModule } from './modules/models/messages/messages.module';
 import { GptsModule } from './modules/models/gpts/gpts.module';
+import { AuthModule } from './modules/functions/auth/auth.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { GptsModule } from './modules/models/gpts/gpts.module';
     RoomsModule,
     MessagesModule,
     GptsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

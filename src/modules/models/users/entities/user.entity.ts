@@ -29,19 +29,36 @@ export class User extends BaseEntity {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
-  @Column()
+  @Column({
+    default:
+      'https://velog.velcdn.com/images/hclou0806/profile/d4697cef-6173-43eb-b60a-fa9bb447722d/social_profile.png',
+    nullable: true,
+  })
   photo_url: string;
 
-  @Column({ type: 'enum', enum: Country, default: Country.KOREA })
+  @Column({ nullable: true })
+  name: string;
+
+  @Column({
+    type: 'enum',
+    enum: Country,
+    default: Country.KOREA,
+    nullable: true,
+  })
   country: Country;
 
-  @Column({ type: 'enum', enum: Gender, default: Gender.NONSELECT })
+  @Column({
+    type: 'enum',
+    enum: Gender,
+    default: Gender.NONSELECT,
+    nullable: true,
+  })
   gender: Gender;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', nullable: true })
   last_login!: Date;
 
   // RELATED COLUMNS
