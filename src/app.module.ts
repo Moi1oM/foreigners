@@ -4,6 +4,10 @@ import { AppService } from './app.service';
 import { LoggerMiddleware } from './commons/common/logger/logger.middleware';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './modules/models/users/entities/user.entity';
+import { Room } from './modules/models/rooms/entities/room.entity';
+import { Message } from './modules/models/messages/entities/message.entity';
+import { Gpt } from './modules/models/gpts/entities/gpt.entity';
 
 @Module({
   imports: [
@@ -17,7 +21,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DBNAME,
-      entities: [],
+      entities: [User, Room, Message, Gpt],
       synchronize: true,
     }),
   ],
