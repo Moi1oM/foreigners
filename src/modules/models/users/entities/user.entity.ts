@@ -10,6 +10,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Room } from '../../rooms/entities/room.entity';
+import { Country } from '../enum/Country.enum';
+import { Gender } from '../enum/Gender.enum';
 
 @Entity()
 export class User extends BaseEntity {
@@ -32,6 +34,12 @@ export class User extends BaseEntity {
 
   @Column()
   photo_url: string;
+
+  @Column({ type: 'enum', enum: Country, default: Country.KOREA })
+  country: Country;
+
+  @Column({ type: 'enum', enum: Gender, default: Gender.NONSELECT })
+  gender: Gender;
 
   @Column({ type: 'timestamp' })
   last_login!: Date;
