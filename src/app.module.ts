@@ -8,6 +8,10 @@ import { User } from './modules/models/users/entities/user.entity';
 import { Room } from './modules/models/rooms/entities/room.entity';
 import { Message } from './modules/models/messages/entities/message.entity';
 import { Gpt } from './modules/models/gpts/entities/gpt.entity';
+import { UsersModule } from './modules/models/users/users.module';
+import { RoomsModule } from './modules/models/rooms/rooms.module';
+import { MessagesModule } from './modules/models/messages/messages.module';
+import { GptsModule } from './modules/models/gpts/gpts.module';
 
 @Module({
   imports: [
@@ -24,6 +28,10 @@ import { Gpt } from './modules/models/gpts/entities/gpt.entity';
       entities: [User, Room, Message, Gpt],
       synchronize: true,
     }),
+    UsersModule,
+    RoomsModule,
+    MessagesModule,
+    GptsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

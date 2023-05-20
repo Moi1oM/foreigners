@@ -22,8 +22,8 @@ async function bootstrap() {
 
   // Swagger Setting
   const config = new DocumentBuilder()
-    .setTitle('Novelier Docs')
-    .setDescription('Novelier 0.1 API description')
+    .setTitle('Foreigners Docs')
+    .setDescription('Foreigners 0.1 API description')
     .setVersion('0.1')
     .addBearerAuth()
     .build();
