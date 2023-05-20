@@ -17,6 +17,11 @@ export class UsersService {
     return user;
   }
 
+  async updateLastLogin(user: User) {
+    user.last_login = new Date();
+    await user.save();
+  }
+
   async findOneByEmail(email: string): Promise<User> {
     const user = await this.usersRepository.findOne({
       where: { email: email },
@@ -27,7 +32,7 @@ export class UsersService {
   async socialCreate(data) {
     const newData = {
       email: data.email,
-      password: data.name,
+      name: data.name,
     };
     return this.usersRepository.save(newData);
   }
@@ -36,12 +41,12 @@ export class UsersService {
     return await this.usersRepository.save(data);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    return await this.usersRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.usersRepository.findOne({ where: { id: id } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

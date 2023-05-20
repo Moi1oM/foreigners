@@ -44,7 +44,8 @@ export class UsersController {
   }
 
   @ApiOperation({
-    deprecated: true,
+    description: '계정 전부 가져오기',
+    summary: 'findAll',
   })
   @Get()
   findAll() {
@@ -52,11 +53,21 @@ export class UsersController {
   }
 
   @ApiOperation({
-    deprecated: true,
+    description: 'id 값으로 유저 가져오기',
+    summary: 'findOneById',
   })
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOneId(@Param('id') id: string) {
     return this.usersService.findOne(+id);
+  }
+
+  @ApiOperation({
+    description: 'email 값으로 유저 가져오기',
+    summary: 'findOneByEmail',
+  })
+  @Get(':email')
+  findOneEmail(@Param('email') email: string) {
+    return this.usersService.findOneByEmail(email);
   }
 
   @ApiOperation({

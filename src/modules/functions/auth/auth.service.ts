@@ -12,7 +12,7 @@ export class AuthService {
 
   async login(data) {
     let userData;
-    console.log('data', data);
+    // console.log('data', data);
     switch (data.vendor) {
       case 'google': {
         userData = await this.getUserByGoogleAccessToken(data.accessToken);
@@ -44,7 +44,7 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('유효하지 않은 구글 액세스 토큰');
     }
-    console.log('logging', user);
+    // console.log('logging', user);
     const userId = await this.usersService.findOneByEmail(user.data.email);
     if (!userId) {
       const dataForCreateUser = {
@@ -52,8 +52,10 @@ export class AuthService {
         name: user.data.name,
       };
       const newUser = await this.usersService.socialCreate(dataForCreateUser);
+      await this.usersService.updateLastLogin(newUser);
       return newUser;
     }
+    await this.usersService.updateLastLogin(userId);
     return userId;
   }
 }
