@@ -26,7 +26,10 @@ export class Gpt extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({
+    default:
+      'https://velog.velcdn.com/images/hclou0806/profile/d4697cef-6173-43eb-b60a-fa9bb447722d/social_profile.png',
+  })
   profile_img: string;
 
   @Column()

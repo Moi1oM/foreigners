@@ -1,18 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateGptDto } from './dto/create-gpt.dto';
 import { UpdateGptDto } from './dto/update-gpt.dto';
+import { Gpt } from './entities/gpt.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class GptsService {
-  create(createGptDto: CreateGptDto) {
-    return 'This action adds a new gpt';
+  constructor(
+    @InjectRepository(Gpt)
+    private gptsRepository: Repository<Gpt>,
+  ) {}
+
+  async create(createGptDto: CreateGptDto) {
+    return await this.gptsRepository.save(createGptDto);
   }
 
-  findAll() {
-    return `This action returns all gpts`;
+  async findAll() {
+    return await this.gptsRepository.find();
   }
 
-  findOne(id: number) {
+  async findOneByName(name: string) {
+    return await this.gptsRepository.findOne({ where: { name: name } });
+  }
+
+  async findOne(id: number) {
     return `This action returns a #${id} gpt`;
   }
 

@@ -18,7 +18,8 @@ export class GptsController {
   constructor(private readonly gptsService: GptsService) {}
 
   @ApiOperation({
-    deprecated: true,
+    description: 'GPT인간 만들기',
+    summary: 'new Gpt',
   })
   @Post()
   create(@Body() createGptDto: CreateGptDto) {
@@ -26,11 +27,21 @@ export class GptsController {
   }
 
   @ApiOperation({
-    deprecated: true,
+    description: 'GPT인간 조회하기',
+    summary: 'findAll gpt',
   })
   @Get()
   findAll() {
     return this.gptsService.findAll();
+  }
+
+  @ApiOperation({
+    description: '이름으로 GPT인간 찾기',
+    summary: 'find gpt by name',
+  })
+  @Get(':name')
+  findOneName(@Param('name') name: string) {
+    return this.gptsService.findOneByName(name);
   }
 
   @ApiOperation({
