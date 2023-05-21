@@ -28,16 +28,20 @@ export class Room extends BaseEntity {
   updatedAt!: Date;
 
   // INPUT COLUMNS
-  @Column()
+  @Column({ nullable: true, default: '대화가 시작되지 않았습니다.' })
   from_name: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+    default:
+      'https://blog.kakaocdn.net/dn/GHYFr/btrsSwcSDQV/UQZxkayGyAXrPACyf0MaV1/img.jpg',
+  })
   from_avatar: string;
 
-  @Column()
+  @Column({ nullable: true, default: '대화가 시작되지 않았습니다.' })
   last_msg: string;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', nullable: true })
   last_time: Date;
 
   // RELATED COLUMNS
@@ -47,6 +51,7 @@ export class Room extends BaseEntity {
 
   @OneToMany(() => Message, (message) => message.room, {
     eager: true,
+    nullable: true,
   })
   messages: Message[];
 

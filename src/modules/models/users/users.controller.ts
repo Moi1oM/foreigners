@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -65,8 +66,8 @@ export class UsersController {
     description: 'email 값으로 유저 가져오기',
     summary: 'findOneByEmail',
   })
-  @Get(':email')
-  findOneEmail(@Param('email') email: string) {
+  @Get('')
+  findOneEmail(@Query('email') email: string) {
     return this.usersService.findOneByEmail(email);
   }
 

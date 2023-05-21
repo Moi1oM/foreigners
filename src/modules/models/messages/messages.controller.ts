@@ -18,7 +18,8 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
   @ApiOperation({
-    deprecated: true,
+    description: '메세지 보내기 : 소켓 아님.',
+    summary: 'sending message in room : non-socket',
   })
   @Post()
   create(@Body() createMessageDto: CreateMessageDto) {
